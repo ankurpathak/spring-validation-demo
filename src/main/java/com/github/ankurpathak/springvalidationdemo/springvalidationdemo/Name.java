@@ -1,10 +1,11 @@
 package com.github.ankurpathak.springvalidationdemo.springvalidationdemo;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotBlank;
 import javax.xml.bind.annotation.XmlRootElement;
 
 
-@XmlRootElement
+//@XmlRootElement
 public class Name {
 
     @NotBlank
@@ -13,7 +14,17 @@ public class Name {
     @NotBlank
     private String lastName;
 
+    @AssertTrue
+    boolean flag;
 
+
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -32,9 +43,10 @@ public class Name {
     }
 
 
-    public Name(String firstName, String lastName) {
+    public Name(String firstName, String lastName, boolean flag) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.flag = flag;
     }
 
 

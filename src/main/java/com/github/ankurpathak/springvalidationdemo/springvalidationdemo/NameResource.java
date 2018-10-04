@@ -8,6 +8,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+import javax.validation.groups.ConvertGroup;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
@@ -30,7 +32,7 @@ public class NameResource  {
 
 
     @POST
-    public Response create(Name name, @Context HttpServletRequest request){
+    public Response create(@Valid Name name, @Context HttpServletRequest request){
         ResourceUtil.processValidation(name, validator, messageSource, request);
         return ResourceUtil.processSuccessNoContent();
     }
@@ -41,7 +43,7 @@ public class NameResource  {
     @GET
     @Path("/{id}")
     public Response get(@PathParam("id") String id){
-        return Response.ok(new Name("Ankur", "Pathak")).build();
+        return Response.ok(new Name("Ankur", "Pathak", true)).build();
     }
 
 
