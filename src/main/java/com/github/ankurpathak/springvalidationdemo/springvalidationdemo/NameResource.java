@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@ public class NameResource  {
 
 
     @POST
-    public Response create(@Valid Name name, @Context HttpServletRequest request){
+    public Response create(Name name, @Context HttpServletRequest request){
         ResourceUtil.processValidation(name, validator, messageSource, request);
         return ResourceUtil.processSuccessNoContent();
     }
